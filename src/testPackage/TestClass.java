@@ -25,7 +25,7 @@ public class TestClass {
 			System.out.print(n+"  ");
 		}
 		
-		Collections.sort(arr, new CompareDesc());
+//		Collections.sort(arr, new CompareDesc());
 		for(Integer i : arr) {
 			i.toString();
 		}
@@ -38,16 +38,16 @@ public class TestClass {
 		
 		System.out.println(str.toString());
 	}
-	class CompareDesc implements Comparator<number>{
-		public int compare(Integer n, Integer n2) {
-			return (n. < n2)? -1 : (n == n2)? 0 : 1;
-		}
-	}
-	public class number{
-		public void number() {
-			int n = 1;
-			int n2 = 2;
-		}
-	}
+//	class CompareDesc implements Comparator<number>{
+//		public int compare(Integer n, Integer n2) {
+//			return (n. < n2)? -1 : (n == n2)? 0 : 1;
+//		}
+//	}
+//	public class number{
+//		public void number() {
+//			int n = 1;
+//			int n2 = 2;
+//		}
+//	}
 
 }
