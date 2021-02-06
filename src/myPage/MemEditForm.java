@@ -55,7 +55,7 @@ JButton withdrawBtn = new JButton("회원 탈퇴");
 JButton returnBtn = new JButton("마이페이지 돌아가기");
 JButton editBtn = new JButton("수정정보저장");
 
-Font font1 = new Font("맑은 고딕",Font.BOLD,15);
+Font font1 = new Font("맑은 고딕",Font.BOLD,20);
 
 JoinMem rm = new JoinMem();
 
@@ -90,8 +90,8 @@ thxPage thx = new thxPage();
 	}
 	
 	public void setComponentSize() {
-		topPane.setBounds(190,80,100,30);
-		editLbl.setBounds(400, 80, 100, 30);
+		topPane.setBounds(190,80,300,30);
+		editLbl.setBounds(400, 80, 200, 30);
 		
 		editPane.setBounds(190,120,560,400);
 		idLbl.setBounds(40,10,100,30);
@@ -114,7 +114,7 @@ thxPage thx = new thxPage();
 		pwLbl.setBounds(40,250,100,30);
 		pwPf.setBounds(150,250,200,30);
 		showPassword.setBounds(150,280,150,30);
-		withdrawBtn.setBounds(80,350,100,30);
+		withdrawBtn.setBounds(90,350,100,30);
 		returnBtn.setBounds(200,350,150,30);
 		editBtn.setBounds(360,350,120,30);
 	}

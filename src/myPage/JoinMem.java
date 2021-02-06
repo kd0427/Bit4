@@ -21,7 +21,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
-public class JoinMem extends JPanel implements ActionListener{
+public class JoinMem<on> extends JPanel implements ActionListener{
 	
 	JPanel eastPane = new JPanel();		
 	JLabel regiLbl = new JLabel("회원가입");
@@ -55,15 +55,15 @@ public class JoinMem extends JPanel implements ActionListener{
 	JComboBox<String> domainCombo = new JComboBox<String>();
 	String[] domain = {"naver.com", "nate.com", "daum.net", "gmail.com", "kakao.com"};
 	 
-	JButton regiBtn = new JButton("회원가입");
+	JButton regiBtn = new JButton("4CINEAM 가입");
 	
 	Font font1 = new Font("맑은 고딕",Font.BOLD,15);
-	
+	Font font2 = new Font("맑은 고딕",Font.BOLD,20);
 	// 라디오 버튼을 그룹화 하기위한 객체 생성
 	JPanel radioPane = new JPanel();
 	ButtonGroup genderRd = new ButtonGroup();
 
-
+	
 
 	public JoinMem() {
 		setFrame();
@@ -83,8 +83,8 @@ public class JoinMem extends JPanel implements ActionListener{
 		//setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 	}
 	public void setComponentSize() {
-		eastPane.setBounds(30,60,200,400);
-		topPane.setBounds(250,60,100,30);
+		eastPane.setBounds(30,60,200,40);
+		topPane.setBounds(90,110,100,30);
 		inputPane.setBounds(250,70,450,450);
 		
 		idLbl.setBounds(40,40,100,30);
@@ -103,15 +103,15 @@ public class JoinMem extends JPanel implements ActionListener{
 		
 		emailLbl.setBounds(40, 240, 100, 30);
 		emailTf.setBounds(110,240,90,30);
-		atLbl.setBounds(200,240,30,30);
+		atLbl.setBounds(205,240,30,30);
 		
-		domainCombo.setBounds(220, 240, 150, 30);
+		domainCombo.setBounds(225, 240, 150, 30);
 		
 		pwLbl.setBounds(40,280,100,30);
 		pwPf.setBounds(110,280,200,30);
 		showPassword.setBounds(110,310,150,20);
 		
-		regiBtn.setBounds(130,370,150,30);
+		regiBtn.setBounds(130,370,200,30);
 	}
 	public void setLayout() {
 		setLayout(null);
@@ -156,8 +156,9 @@ public class JoinMem extends JPanel implements ActionListener{
 		add(inputPane);
 	}
 	public void setFont() {
-		regiLbl.setFont(font1);
+		regiLbl.setFont(font2);
 		inputLbl.setFont(font1);
+		regiBtn.setFont(font1);
 	}
 	public void setDomain() {
 		for (String domain : domain) {			
@@ -172,8 +173,8 @@ public class JoinMem extends JPanel implements ActionListener{
 		topPane.setBackground(Color.BLACK);
 		inputPane.setBackground(Color.BLACK);
 		// 라벨색상
-		regiLbl.setForeground(Color.RED); // 회원가입 라벨
-		inputLbl.setForeground(Color.RED); // 개인정보 입력 라벨
+		regiLbl.setForeground(Color.WHITE); // 회원가입 라벨
+		inputLbl.setForeground(Color.WHITE); // 개인정보 입력 라벨
 		// 라벨 색상
 		idLbl.setForeground(Color.WHITE);	
 		nameLbl.setForeground(Color.WHITE);	
@@ -192,11 +193,12 @@ public class JoinMem extends JPanel implements ActionListener{
 		
 		
 		// 회원가입 버튼 색상
-		regiBtn.setBackground(Color.BLACK); regiBtn.setForeground(Color.WHITE);
+		regiBtn.setBackground(Color.BLACK); regiBtn.setForeground(Color.RED);
 		// 선
-		LineBorder lineBorder = new LineBorder(Color.WHITE); 		
+		LineBorder lineBorder = new LineBorder(Color.GRAY); 		
 		inputPane.setBorder(lineBorder);
-		LineBorder lineBorder1 = new LineBorder(Color.RED); 	
+		
+		LineBorder lineBorder1 = new LineBorder(Color.RED); 		
 		regiBtn.setBorder(lineBorder1);
 		
 		
@@ -214,18 +216,23 @@ public class JoinMem extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		Object obj = e.getSource();
 		if(obj == regiBtn) {
-//			JOptionPane.showMessageDialog(this,"회원가입 되었습니다.\n 4CINEMA 가입을 환영합니다.");
-//			if(obj.equals("OK")) {
-//				setVisible(false);
-//				MyPageForm.myPagePane.setVisible(true);
-//			
-			int result = JOptionPane.showInternalConfirmDialog(null, "회원가입 되었습니다. \n 4CINEMA 가입을 환영합니다", "회원가입완료", 
-					JOptionPane.YES_OPTION);
+			JOptionPane.showMessageDialog(this,"회원가입 되었습니다.\n 4CINEMA 가입을 환영합니다.");
+			//if(obj.equals("OK")) {
+				setVisible(false);
+				
+				MainPane mp = new MainPane(); //메인 탭 밖에서 부르면 에러남
+			
+				mp.tp.setSelectedIndex(4); // 마이페이지 탭 불러오기 
 
-				if(result == JOptionPane.YES_OPTION) { //ok 버튼 누르면 마이페이지 또는 영화예매 화면으로 이동하기
-					setVisible(false);
-					MyPageForm.myPagePane.setVisible(true);
-				}
+				
+				
+//			int result = JOptionPane.showInternalConfirmDialog(null, "회원가입 되었습니다. \n 4CINEMA 가입을 환영합니다", "회원가입완료", 
+//					JOptionPane.YES_OPTION);
+//
+//				if(result == JOptionPane.YES_OPTION) { //ok 버튼 누르면 마이페이지 또는 영화예매 화면으로 이동하기
+//					setVisible(false);
+//					MyPageForm.myPagePane.setVisible(true); }
+				
 		
 		}else if(obj ==	showPassword) { // showPassword JCheckBox
 			if(showPassword.isSelected()) {

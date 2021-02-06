@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.util.Calendar;
 
 import javax.swing.DefaultCellEditor;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
@@ -21,6 +22,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
@@ -41,6 +43,10 @@ public class MyMovieRatingPage extends JPanel implements ActionListener{
 	JTable reviewTb;
 	JScrollPane sp;
 	DefaultTableModel model;
+	
+	DefaultListCellRenderer celhead = new DefaultListCellRenderer();
+	DefaultTableCellRenderer celAlignCenter = new DefaultTableCellRenderer();
+	
 	String tableLbl[] = {"예매 영화","날짜","시간","상영관","평점","리뷰"};
 	Object test[][] = {
 			{"1","2","3"},
@@ -49,17 +55,19 @@ public class MyMovieRatingPage extends JPanel implements ActionListener{
 	JComboBox<String> movieRatingCombo = new JComboBox<>();
 	String comboLbl[] = {"평점 선택","1","2","3","4","5"};
 	
-	
 	JPanel reservSearchPane = new JPanel();
 	JLabel reservSearchLbl = new JLabel("예매 내역");
 	JTextField reservSearchTf = new JTextField(20);
 	JButton reservSearchBtn = new JButton("검색");
 	Font font1 = new Font("맑은 고딕",0, 12);
+	Font font= new Font("맑은 고딕",0, 16);
 	
 	//다른 클래스 호출
 	JFrame f = new JFrame();
 	Container con = f.getContentPane();
-	//MyPageForm mpf = new MyPageForm(); // 마이페이지돌아가기ㄴ
+	
+	
+	
 	
 	public MyMovieRatingPage() {
 		setFrame();
@@ -79,15 +87,14 @@ public class MyMovieRatingPage extends JPanel implements ActionListener{
 	}
 	public void setFrame() {
 		setVisible(true);
-//		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-//		setSize(1000,700);
-		
+
 	}
 	public void setComponentSize() {
 		allPane.setBounds(150,100,700,500);
-		btnPane.setBounds(100,20,700,300);
+		btnPane.setBounds(95,20,800,300);
+		pane.setBounds(500,320,800,450);
 		
-	}
+		}
 	public void setLayout() {
 		//setLayout(null);
 		setLayout(new BorderLayout());
@@ -96,8 +103,7 @@ public class MyMovieRatingPage extends JPanel implements ActionListener{
 		//add("North", btnPane);
 		
 		setTable();
-	
-		sp.setPreferredSize(new Dimension(800,450));
+
 		pane.add(sp);
 		
 		//add("Center",pane);
@@ -114,9 +120,8 @@ public class MyMovieRatingPage extends JPanel implements ActionListener{
 		allPane.add("Center",pane);
 		allPane.add("South",reservSearchPane);
 		
-		allPane.setBackground(Color.WHITE);
+	
 		add(allPane);
-		 
 	}
 	public void setComboBox() {
 		for (String num : comboLbl) {
@@ -138,10 +143,23 @@ public class MyMovieRatingPage extends JPanel implements ActionListener{
 				
 				return component;
 			}
+			
+			
 		};
 		
 		this.sp = new JScrollPane(reviewTb,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		sp.setSize(200, 200);
+		sp.setPreferredSize(new Dimension(800,450));
+//		reviewTb.getColumnModel().getColumn(3).setPreferredWidth(10);
+//		reviewTb.getColumnModel().getColumn(4).setPreferredWidth(10);
+		reviewTb.getColumnModel().getColumn(5).setPreferredWidth(150);
+		celAlignCenter.setHorizontalAlignment(JLabel.CENTER);
+		for (int i = 0; i < tableLbl.length-1; i++) {
+			this.reviewTb.getColumnModel().getColumn(i).setCellRenderer(celAlignCenter);
+			celhead.setBackground(Color.WHITE);		
+			reviewTb.setRowHeight(30);
+			reviewTb.getColumnModel().getColumn(i).setPreferredWidth(10);
+		}
 	}
 	public void setColor() {
 		
@@ -149,15 +167,15 @@ public class MyMovieRatingPage extends JPanel implements ActionListener{
 		allPane.setBackground(Color.BLACK);
 		pane.setBackground(Color.BLACK);
 		
-		sp.setBackground(Color.BLACK);		
+		sp.setBackground(Color.BLACK);		sp.setForeground(Color.WHITE);
 		reviewTb.setBackground(Color.BLACK); reviewTb.setForeground(Color.WHITE);
 		
-		allListBtn.setBackground(Color.BLACK);		allListBtn.setForeground(Color.WHITE);
-		dayListBtn.setBackground(Color.BLACK); 		dayListBtn.setForeground(Color.WHITE);
-		ratingBtn.setBackground(Color.BLACK); 		ratingBtn.setForeground(Color.WHITE);
-		reviewEditBtn.setBackground(Color.BLACK); 	reviewEditBtn.setForeground(Color.WHITE);
-		reviewDeleteBtn.setBackground(Color.BLACK); reviewDeleteBtn.setForeground(Color.WHITE);
-		returnBtn.setBackground(Color.BLACK); 		returnBtn.setForeground(Color.WHITE);
+		allListBtn.setBackground(Color.BLACK);		allListBtn.setForeground(Color.WHITE);  allListBtn.setFont(font);
+		dayListBtn.setBackground(Color.BLACK); 		dayListBtn.setForeground(Color.WHITE);	dayListBtn.setFont(font);
+		ratingBtn.setBackground(Color.BLACK); 		ratingBtn.setForeground(Color.WHITE);	ratingBtn.setFont(font);
+		reviewEditBtn.setBackground(Color.BLACK); 	reviewEditBtn.setForeground(Color.WHITE);	reviewEditBtn.setFont(font);
+		reviewDeleteBtn.setBackground(Color.BLACK); reviewDeleteBtn.setForeground(Color.WHITE);	reviewDeleteBtn.setFont(font);
+		returnBtn.setBackground(Color.BLACK); 		returnBtn.setForeground(Color.WHITE);	returnBtn.setFont(font);
 		reservSearchBtn.setBackground(Color.BLACK); reservSearchBtn.setForeground(Color.WHITE);
 		
 		reservSearchPane.setBackground(Color.BLACK);
@@ -168,6 +186,7 @@ public class MyMovieRatingPage extends JPanel implements ActionListener{
 		sp.setBorder(lineBorder);
 //		btnPane.setBorder(lineBorder);
 		
+		allPane.setBackground(Color.WHITE);
 		
 	}
 

@@ -13,6 +13,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.border.LineBorder;
@@ -47,6 +48,7 @@ JButton infoBtn = new JButton("회원등급 & 포인트 정보");
 
 Font font = new Font("맑은 고딕",Font.BOLD,20);
 Font font1 = new Font("맑은 고딕",Font.BOLD,13);
+
 
 
 //다른 클래스 호출
